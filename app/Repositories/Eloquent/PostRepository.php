@@ -10,6 +10,9 @@ class PostRepository implements PostRepositoryInterface
 {  
     /**
      * Create a post
+     * 
+     * @param int $user_id = User's ID
+     * @param string $content = Content of the post
      */
     public function store(int $user_id, string $content): int
     {
@@ -21,8 +24,30 @@ class PostRepository implements PostRepositoryInterface
         if($result){
             return $result;
         } else {
-            return ['error' => 'Error occured when trying to create post'];
+            return 0;
         }
     }
+
+    /**
+     * Pull all posts order by date created
+     */
+    public function all(): collection
+    {
+        return Post::orderBy('created_at','desc')->with('user', 'postlike')->get();
+    }
+
+    /**
+     * Pull all posts by specific user_id
+     * @param int $id = User's ID
+     */
+    public function getByUserId(int $id): collection
+    {
+        return Post::where('user_id', '=', $id)->orderBy('created_at','desc')->with('user', 'postlike')->get();
+    }
+
+    // public function postLikeCheck(int $post_id, int $user_id): collection
+    // {
+    //     return Post::where('user_id', '=', $id)->orderBy('created_at','desc')->with('user')->get();
+    // }
 
 }

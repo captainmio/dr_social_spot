@@ -16,6 +16,16 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+    img {
+        @media(max-width: 768px) {
+            width: 75%!important;
+        }
+    }
 
+    strong {
+        @media(max-width: 768px) {
+            font-size: 30px;
+        }
+    }
 </style>

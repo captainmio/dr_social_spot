@@ -24,6 +24,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     // post endpoints
     Route::post('post', 'PostController@store');
+    Route::get('posts/{id}', 'PostController@index');
+    Route::post('post/like/', 'PostController@likeAPost');
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

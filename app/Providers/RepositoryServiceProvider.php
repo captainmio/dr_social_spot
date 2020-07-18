@@ -6,6 +6,8 @@ use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\UserRepositoryInterface; 
 use App\Repositories\Eloquent\PostRepository;
 use App\Repositories\PostRepositoryInterface;
+use App\Repositories\Eloquent\PostLikeRepository;
+use App\Repositories\PostLikeRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -29,5 +31,6 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
+        $this->app->bind(PostLikeRepositoryInterface::class, PostLikeRepository::class);
     }
 }

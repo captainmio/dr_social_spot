@@ -11,3 +11,6 @@ export const SET_LOCALE = 'SET_LOCALE'
 
 // user.js
 export const FRIEND_LIST = 'FRIEND_LIST'
+
+// post.js
+export const POSTS_LIST = 'POSTS_LIST'
