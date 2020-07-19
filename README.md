@@ -2,7 +2,7 @@
 I only do the configuration using the .env file so please do the adjustment of the values to .env variables
 
 **Step 1**: rename .env-example to .env file
-
+<br />
 **Step 2**: update the following variable(depending how you set-up your localserver)
 
 ```
