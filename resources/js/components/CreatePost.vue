@@ -17,6 +17,7 @@ export default {
             post: null
         }
     },
+    props: ['view_post_type'],
     computed: mapGetters({
         user: 'auth/user'
     }),
@@ -31,7 +32,12 @@ export default {
                 }).then(response => {
                     if(isNaN(response)) {
                         // execute pulling of your latest post
-                        this.$store.dispatch('post/pullAllPosts', {id: 0});
+                        if(this.view_post_type == 1) {
+                            this.$store.dispatch('post/pullAllPosts', {id: this.user.id});
+                        } else {
+                            this.$store.dispatch('post/pullAllPosts', {id: 0});
+                        }
+                        
                     }
                 })
             }

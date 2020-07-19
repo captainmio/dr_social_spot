@@ -45,7 +45,6 @@ export const actions = {
     },
     likeAPost (context, payload) {
         return new Promise((resolve, reject) => {
-            console.log(payload);
             let baseUrl = ApiService.getBaseUrl();
             axios
             .post(baseUrl + 'post/like/', payload)
@@ -57,4 +56,31 @@ export const actions = {
         });
 
     },
+    addComment (context, payload) {
+        return new Promise((resolve, reject) => {
+            let baseUrl = ApiService.getBaseUrl();
+            axios
+            .post(baseUrl + 'post/comment/', payload)
+            .then(response => {
+                resolve(response)
+            }).catch(err => {
+                reject(err)
+            })
+        });
+
+    },
+
+    pullReplies (context, payload) {
+        return new Promise((resolve, reject) => {
+            let baseUrl = ApiService.getBaseUrl();
+            axios
+            .get(baseUrl + 'post/replies/'+payload.post_id+'/'+payload.parent_id+'/'+payload.user_id+'/')
+            .then(response => {
+                resolve(response)
+            }).catch(err => {
+                reject(err)
+            })
+        });
+
+    }
 }

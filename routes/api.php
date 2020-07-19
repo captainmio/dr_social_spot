@@ -26,6 +26,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('post', 'PostController@store');
     Route::get('posts/{id}', 'PostController@index');
     Route::post('post/like/', 'PostController@likeAPost');
+
+    // comment endpoints
+    Route::post('post/comment/', 'CommentController@store');
+
+    // replies
+    Route::get('post/replies/{post_id}/{parent_id}/{user_id}', 'CommentController@pullReplies');
+    
 });
 
 Route::group(['middleware' => 'guest:api'], function () {

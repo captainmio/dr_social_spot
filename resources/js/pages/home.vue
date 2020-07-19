@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-7 col-12 order-md-1 order-2">
         <card class="postarea" :title="'Create Post'">
-          <CreatePost></CreatePost>
+          <CreatePost view_post_type="0"></CreatePost>
         </card>
           <PullPost></PullPost>
       </div>
@@ -38,11 +38,7 @@ export default {
       posts: 'post/posts'
   }),
   mounted: function() {
-    // get post every 1 minute
-    var self = this.$store
-    setInterval(function() {
-        self.dispatch('post/pullAllPosts', {id: 0});
-    }, 60 * 1000);
+    
       
   },
   metaInfo () {

@@ -33,7 +33,10 @@ class PostRepository implements PostRepositoryInterface
      */
     public function all(): collection
     {
-        return Post::orderBy('created_at','desc')->with('user', 'postlike')->get();
+        // return Post::orderBy('created_at','desc')->with('user', 'postlike', 'comments')->get();
+        return Post::orderBy('created_at','desc')->with('user', 'postlike')->with(['comments' => function ($comment) {
+            $comment->with('user', 'replies');
+        }])->get();
     }
 
     /**
@@ -42,7 +45,11 @@ class PostRepository implements PostRepositoryInterface
      */
     public function getByUserId(int $id): collection
     {
-        return Post::where('user_id', '=', $id)->orderBy('created_at','desc')->with('user', 'postlike')->get();
+        // return Post::where('user_id', '=', $id)->orderBy('created_at','desc')->with('user', 'postlike', 'comments')->get();
+
+        return Post::where('user_id', '=', $id)->orderBy('created_at','desc')->with('user', 'postlike')->with(['comments' => function ($comment) {
+            $comment->with('user', 'replies');
+        }])->get();
     }
 
     // public function postLikeCheck(int $post_id, int $user_id): collection

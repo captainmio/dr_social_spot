@@ -15,4 +15,9 @@ class Post extends Model
     {
         return $this->hasMany('App\PostLike');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment')->where('parent_id', '=', 0);
+    }
 }
